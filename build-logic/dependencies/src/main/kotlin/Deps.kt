@@ -25,11 +25,15 @@ object Deps {
     private const val lifecycleVersion = "2.3.1"
     private const val glideVersion = "4.12.0"
     private const val androidAppCompatVersion = "1.3.1"
-    private const val androidComposeVersion = "1.1.0-alpha04"
+    private const val androidComposeVersion = "1.1.0-alpha06"
     private const val androidGradlePluginVersion = "4.2.2"
 
     private const val kvisionVersion = "5.1.1"
     private const val shadowVer = "7.0.0"
+
+    object Modules {
+        const val Core: String = ":core"
+    }
 
     object Libs {
         object KVision {
@@ -73,6 +77,7 @@ object Deps {
                 const val Cio = "io.ktor:ktor-client-cio:$ktorVersion"
                 const val Serialization = "io.ktor:ktor-client-serialization:$ktorVersion"
             }
+
             object Server {
                 const val Core = "io.ktor:ktor-server-core:$ktorVersion"
                 const val Cio = "io.ktor:ktor-server-cio:$ktorVersion"
@@ -80,14 +85,23 @@ object Deps {
                 const val Openapi = "com.github.papsign:Ktor-OpenAPI-Generator:$ktorOpenapiVersion"
             }
         }
+
+        object KotlinGang {
+            object KotlinDataStorage {
+                const val SharedPreferences = "fun.kotlingang.kds:json-shared-preferences:1.1.0"
+            }
+        }
+
         object Exposed {
             const val Core = "org.jetbrains.exposed:exposed-core:$exposedVersion"
             const val Jdbc = "org.jetbrains.exposed:exposed-jdbc:$exposedVersion"
             const val Time = "org.jetbrains.exposed:exposed-java-time:$exposedVersion"
         }
+
         object Postgres {
             const val Jdbc = "org.postgresql:postgresql:$postgresqlVersion"
         }
+
         object Logback {
             const val Classic = "ch.qos.logback:logback-classic:$logbackVersion"    
         }
@@ -109,6 +123,12 @@ object Deps {
                 "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
             const val LifecycleKtx =
                 "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+            const val LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion"
+            const val LifecycleCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
+
+            object Navigation {
+                const val Compose = "androidx.navigation:navigation-compose:2.4.0-alpha10"
+            }
 
             object Compose {
                 const val UI = "androidx.compose.ui:ui:$androidComposeVersion"

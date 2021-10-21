@@ -18,6 +18,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.kotlingang.fun")
         maven("https://jitpack.io")
         gradlePluginPortal()
     }
@@ -27,3 +28,5 @@ rootProject.name = "simple-vocabulary"
 
 includeBuild("build-logic/dependencies")
 includeBuild("build-logic/configuration")
+
+include(":core")
