@@ -1,11 +1,29 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        mavenCentral()
         google()
+        maven("https://jitpack.io")
+        gradlePluginPortal()
+    }
+    plugins {
+        id("com.android.application") version "4.2.2"
+        id("org.jetbrains.kotlin.android") version "1.5.31"
+        id("org.jetbrains.kotlin.multiplatform") version "1.5.31"
+        id("org.jetbrains.kotlin.plugin.serialization") version "1.5.31"
     }
 }
 
-rootProject.name = "kotlin-project-template"
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+        gradlePluginPortal()
+    }
+}
 
-includeBuild("buildUtils/dependencies")
-includeBuild("buildUtils/configuration")
+rootProject.name = "simple-vocabulary"
+
+includeBuild("build-logic/dependencies")
+includeBuild("build-logic/configuration")

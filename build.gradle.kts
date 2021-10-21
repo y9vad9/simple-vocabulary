@@ -1,12 +1,10 @@
 plugins {
-    id(Deps.Plugins.Configuration.Kotlin.Jvm)
+    id(Deps.Plugins.Configuration.Kotlin.Android.App)
 }
 
 group = AppInfo.PACKAGE
 version = AppInfo.VERSION
 
-allprojects {
-    repositories {
-        mavenCentral()
-    }
+android {
+    compileSdk = AppInfo.Android.TargetSdk
 }
