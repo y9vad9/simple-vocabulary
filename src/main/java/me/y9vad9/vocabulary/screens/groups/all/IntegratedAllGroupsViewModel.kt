@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.words
+package me.y9vad9.vocabulary.screens.groups.all
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,10 +10,10 @@ import me.y9vad9.vocabulary.entities.TranslatedGroup
 import me.y9vad9.vocabulary.screens.ScreenNavigator
 import me.y9vad9.vocabulary.storage.WordsStorage
 
-class IntegratedWordsViewModel(
+class IntegratedAllGroupsViewModel(
     private val wordsStorage: WordsStorage,
     private val navigator: ScreenNavigator
-) : WordsViewModel() {
+) : AllGroupsViewModel() {
     override val words: MutableStateFlow<List<TranslatedGroup>> = MutableStateFlow(emptyList())
     override val isLoading: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
@@ -40,7 +40,7 @@ class IntegratedWordsViewModel(
         private val navigator: ScreenNavigator
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            IntegratedWordsViewModel(wordsStorage, navigator) as T
+            IntegratedAllGroupsViewModel(wordsStorage, navigator) as T
     }
 
 }

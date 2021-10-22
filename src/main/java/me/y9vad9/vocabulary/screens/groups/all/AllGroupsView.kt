@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.words
+package me.y9vad9.vocabulary.screens.groups.all
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
@@ -25,9 +26,9 @@ import me.y9vad9.vocabulary.entities.TranslatedGroup
 private const val KEY = "Words"
 
 @Composable
-fun WordsView(viewModel: WordsViewModel) = Scaffold(
+fun AllGroupsView(viewModel: AllGroupsViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = ::Toolbar,
+    topBar = { Toolbar() },
     floatingActionButton = { FAB(viewModel::onCreateGroupPressed) }
 ) {
     val isLoading = viewModel.isLoading.collectAsState()
@@ -73,6 +74,7 @@ private fun TranslatedList(list: List<Translated>) = LazyColumn(modifier = Modif
     items(list) { item -> TranslatedItem(item) }
 }
 
+@Composable
 private fun TranslatedItem(translated: Translated) = Row(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
     Text(
         modifier = Modifier.weight(1f),
@@ -100,8 +102,9 @@ private fun NoGroups() = Column(
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     Text(
-        modifier = Modifier.alpha(0.8f),
-        text = "You haven't created any groups and words yet!"
+        modifier = Modifier.alpha(0.8f).padding(horizontal = 8.dp),
+        text = "You haven't created any groups and words yet!",
+        textAlign = TextAlign.Center
     )
 }
 
@@ -114,7 +117,6 @@ private fun Toolbar() = TopAppBar(
 
 @Composable
 private fun FAB(onClick: () -> Unit) = FloatingActionButton(
-    modifier = Modifier.fillMaxWidth(),
     onClick = onClick,
     content = { Image(imageVector = Icons.Rounded.Add, null) }
 )
