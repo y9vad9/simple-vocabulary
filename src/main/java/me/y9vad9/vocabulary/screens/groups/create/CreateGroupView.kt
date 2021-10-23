@@ -41,5 +41,5 @@ fun CreateGroupView(viewModel: CreateGroupViewModel) = Scaffold(
 @Composable
 private fun Toolbar() = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
-    title = { Text("Words in the group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
+    title = { Text("Groups", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
 )

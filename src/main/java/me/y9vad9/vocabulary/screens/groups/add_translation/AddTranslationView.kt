@@ -64,5 +64,5 @@ fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
 @Composable
 private fun Toolbar() = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
-    title = { Text("Words in the group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
+    title = { Text("Add word", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
 )

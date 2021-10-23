@@ -101,7 +101,7 @@ private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) 
 @Composable
 private fun Toolbar() = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
-    title = { Text("Words in the group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
+    title = { Text("Words", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
 )
 
 @Composable

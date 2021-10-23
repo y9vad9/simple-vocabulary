@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.TranslatedGroup
 import me.y9vad9.vocabulary.resources.fonts.Manrope
 
@@ -78,43 +77,15 @@ private fun GroupItem(
             fontSize = TextUnit(18f, TextUnitType.Sp)
         )
         Text(
-            text = group.translated.joinToString(", ").takeIf { it.isNotEmpty() } ?: "Nothing in the group",
+            text = group.translated.map { it.word }.flatten().joinToString(", ").takeIf { it.isNotEmpty() }
+                ?: "Nothing in the group",
             fontWeight = FontWeight.Light,
             fontSize = TextUnit(12f, TextUnitType.Sp),
+            color = Color.Gray,
             maxLines = 2,
             overflow = TextOverflow.Clip
         )
     }
-}
-
-@Composable
-private fun NoTranslatedItems() = Column(
-    modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 60.dp).padding(horizontal = 8.dp),
-    verticalArrangement = Arrangement.Center
-) {
-    Text(
-        modifier = Modifier.align(Alignment.CenterHorizontally),
-        text = "You haven't added anything in this group!",
-        color = Color.Gray,
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-private fun TranslatedList(list: List<Translated>) = LazyColumn(modifier = Modifier.fillMaxWidth()) {
-    items(list) { item -> TranslatedItem(item) }
-}
-
-@Composable
-private fun TranslatedItem(translated: Translated) = Row(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-    Text(
-        modifier = Modifier.weight(1f),
-        text = translated.word.joinToString(",")
-    )
-    Text(
-        modifier = Modifier.weight(1f),
-        text = translated.variants.joinToString(",")
-    )
 }
 
 @Composable
@@ -143,7 +114,7 @@ private fun NoGroups() = Column(
 @Composable
 private fun Toolbar() = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
-    title = { Text("Words in the group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
+    title = { Text("Groups", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
 )
 
 @Composable
