@@ -6,7 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.TranslatedGroup
-import me.y9vad9.vocabulary.entities.Word
 
 object KDSWordsStorage : WordsStorage {
     private object KDSStorage : KSharedDataStorage() {
@@ -29,12 +28,12 @@ object KDSWordsStorage : WordsStorage {
         KDSStorage.groups.removeAll { it.name == name }
     }
 
-    override suspend fun createTranslate(groupName: String, words: List<Word>, variants: List<Word>) {
+    override suspend fun createTranslate(groupName: String, words: List<String>, variants: List<String>) {
         val index = KDSStorage.groups.indexOfFirst { it.name == groupName }
         val group = KDSStorage.groups[index]
         KDSStorage.groups[index] = group.copy(
             translated = group.translated.toMutableList().apply {
-                add(Translated(group.translated.maxOf { it.id } + 1, words, variants))
+                add(Translated((group.translated.maxOfOrNull { it.id } ?: 0) + 1, words, variants))
             }
         )
     }

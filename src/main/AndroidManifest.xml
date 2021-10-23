@@ -5,14 +5,15 @@
     <application
             android:allowBackup="true"
             android:fullBackupContent="true"
+            android:label="Simple Vocabulary"
             android:icon="@mipmap/ic_launcher"
-            android:label="Simple Vocabularu"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:theme="@style/Theme.SimpleVocabulary"
             android:supportsRtl="true">
         <activity
                 android:exported="true"
                 android:name=".AppActivity"
-                android:label="Vocabulary"
-                android:theme="@style/Theme.Dove.NoActionBar">
+                android:label="Vocabulary">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     implementation(Deps.Libs.Androidx.Compose.UI)
-    implementation(Deps.Libs.Androidx.Lifecycle)
     implementation(Deps.Libs.Androidx.LifecycleKtx)
     implementation(Deps.Libs.Androidx.LifecycleViewModel)
     implementation(Deps.Libs.Kotlinx.Coroutines)

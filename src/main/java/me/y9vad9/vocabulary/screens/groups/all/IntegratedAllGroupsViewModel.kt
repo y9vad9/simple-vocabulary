@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.TranslatedGroup
 import me.y9vad9.vocabulary.screens.ScreenNavigator
 import me.y9vad9.vocabulary.storage.WordsStorage
@@ -24,8 +23,8 @@ class IntegratedAllGroupsViewModel(
         }
     }
 
-    override fun onTranslatedItemPressed(translated: Translated) {
-
+    override fun onTranslatedGroupPressed(groupName: String) {
+        navigator.gotoWordsList(groupName)
     }
 
     override fun onAddTranslatedItemPressed(groupName: String) {
@@ -33,6 +32,7 @@ class IntegratedAllGroupsViewModel(
     }
 
     override fun onCreateGroupPressed() {
+        navigator.gotoGroupCreation()
     }
 
     class Factory(

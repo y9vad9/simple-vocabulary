@@ -1,10 +1,10 @@
 package me.y9vad9.vocabulary.screens.groups.all
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -15,13 +15,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.TranslatedGroup
+import me.y9vad9.vocabulary.resources.fonts.Manrope
 
 private const val KEY = "Words"
 
@@ -38,7 +41,10 @@ fun AllGroupsView(viewModel: AllGroupsViewModel) = Scaffold(
         LoadingView()
     else if (words.value.isEmpty())
         NoGroups()
-    else WordsList(words.value, viewModel::onTranslatedItemPressed)
+    else GroupsList(
+        groups = words.value,
+        onItemClicked = viewModel::onTranslatedGroupPressed
+    )
 
     LaunchedEffect(KEY) {
         viewModel.loadWords()
@@ -46,27 +52,52 @@ fun AllGroupsView(viewModel: AllGroupsViewModel) = Scaffold(
 }
 
 @Composable
-private fun WordsList(groups: List<TranslatedGroup>, onItemClicked: (Translated) -> Unit) = LazyColumn(
+private fun GroupsList(
+    groups: List<TranslatedGroup>,
+    onItemClicked: (String) -> Unit
+) = LazyColumn(
     modifier = Modifier.fillMaxWidth(),
     contentPadding = PaddingValues(8.dp)
 ) {
     items(groups) { item ->
-        GroupItem(item)
+        GroupItem(item, onItemClicked)
     }
 }
 
 @Composable
 @OptIn(ExperimentalUnitApi::class)
-private fun GroupItem(group: TranslatedGroup) = Card(modifier = Modifier.fillMaxWidth()) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Box(modifier = Modifier.fillMaxWidth().background(Color.Gray)) {
-            Text(group.name, fontSize = TextUnit(18f, TextUnitType.Sp))
-        }
-
-        if (group.translated.isEmpty())
-            Text(modifier = Modifier.align(Alignment.CenterHorizontally), text = "Nothing here")
-        else TranslatedList(group.translated)
+private fun GroupItem(
+    group: TranslatedGroup,
+    onClick: (String) -> Unit
+) = Card(modifier = Modifier.fillMaxWidth().selectable(false) { onClick(group.name) }) {
+    Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+        Text(
+            text = group.name,
+            fontFamily = Manrope,
+            fontWeight = FontWeight.Bold,
+            fontSize = TextUnit(18f, TextUnitType.Sp)
+        )
+        Text(
+            text = group.translated.joinToString(", ").takeIf { it.isNotEmpty() } ?: "Nothing in the group",
+            fontWeight = FontWeight.Light,
+            fontSize = TextUnit(12f, TextUnitType.Sp),
+            maxLines = 2,
+            overflow = TextOverflow.Clip
+        )
     }
+}
+
+@Composable
+private fun NoTranslatedItems() = Column(
+    modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 60.dp).padding(horizontal = 8.dp),
+    verticalArrangement = Arrangement.Center
+) {
+    Text(
+        modifier = Modifier.align(Alignment.CenterHorizontally),
+        text = "You haven't added anything in this group!",
+        color = Color.Gray,
+        textAlign = TextAlign.Center
+    )
 }
 
 @Composable
@@ -75,7 +106,7 @@ private fun TranslatedList(list: List<Translated>) = LazyColumn(modifier = Modif
 }
 
 @Composable
-private fun TranslatedItem(translated: Translated) = Row(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+private fun TranslatedItem(translated: Translated) = Row(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
     Text(
         modifier = Modifier.weight(1f),
         text = translated.word.joinToString(",")
@@ -112,7 +143,7 @@ private fun NoGroups() = Column(
 @Composable
 private fun Toolbar() = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
-    title = { Text("Vocabulary") }
+    title = { Text("Words in the group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
 )
 
 @Composable
