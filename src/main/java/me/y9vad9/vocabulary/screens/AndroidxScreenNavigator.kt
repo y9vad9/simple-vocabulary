@@ -4,7 +4,9 @@ import androidx.navigation.NavController
 
 class AndroidxScreenNavigator(private val navController: NavController) : ScreenNavigator {
     override fun gotoWordsList(groupName: String) {
-        navController.navigate("groups/$groupName/view")
+        navController.navigate("groups/$groupName/view") {
+            restoreState = false
+        }
     }
 
     override fun gotoGroupCreation() {
@@ -16,6 +18,7 @@ class AndroidxScreenNavigator(private val navController: NavController) : Screen
     }
 
     override fun goBack() {
+        val route = navController.currentDestination!!
         navController.navigateUp()
     }
 }
