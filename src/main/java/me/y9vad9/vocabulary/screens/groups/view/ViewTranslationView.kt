@@ -1,10 +1,12 @@
 package me.y9vad9.vocabulary.screens.groups.view
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -71,30 +73,32 @@ private fun NoItems() = Column(
 
 
 @Composable
-private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) -> Unit) = Box(
+private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) -> Unit) = Row(
     modifier = Modifier.fillMaxWidth().selectable(false) {
         onItemSelected(translated)
     }) {
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(16.dp)
+    Card(
+        modifier = Modifier.weight(1f),
+        border = BorderStroke(1.dp, MaterialTheme.colors.onBackground),
+        shape = RoundedCornerShape(topStart = 0.dp)
     ) {
-        Card(modifier = Modifier.weight(1f)) {
-            Text(
-                modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),
-                text = translated.word.joinToString(","),
-                textAlign = TextAlign.Center
-            )
-        }
+        Text(
+            modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),
+            text = translated.word.joinToString(","),
+            textAlign = TextAlign.Center
+        )
+    }
 
-        Spacer(modifier = Modifier.width(8.dp).fillMaxHeight())
-
-        Card(modifier = Modifier.weight(1f)) {
-            Text(
-                modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),
-                text = translated.variants.joinToString(","),
-                textAlign = TextAlign.Center
-            )
-        }
+    Card(
+        modifier = Modifier.weight(1f),
+        border = BorderStroke(1.dp, MaterialTheme.colors.onBackground),
+        shape = RoundedCornerShape(topStart = 0.dp)
+    ) {
+        Text(
+            modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),
+            text = translated.variants.joinToString(","),
+            textAlign = TextAlign.Center
+        )
     }
 }
 
