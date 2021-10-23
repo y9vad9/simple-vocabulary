@@ -56,7 +56,8 @@ private fun GroupsList(
     onItemClicked: (String) -> Unit
 ) = LazyColumn(
     modifier = Modifier.fillMaxWidth(),
-    contentPadding = PaddingValues(8.dp)
+    contentPadding = PaddingValues(8.dp),
+    verticalArrangement = Arrangement.spacedBy(8.dp)
 ) {
     items(groups) { item ->
         GroupItem(item, onItemClicked)
