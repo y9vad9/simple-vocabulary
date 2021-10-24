@@ -8,14 +8,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import me.y9vad9.vocabulary.resources.fonts.Manrope
+import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @Composable
 fun CreateGroupView(viewModel: CreateGroupViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = { Toolbar() }
+    topBar = { VocabularyToolbar("New group", onBackPressed = { viewModel.onBackPressed() }) }
 ) {
     val name = viewModel.name.collectAsState()
     val isLoading = viewModel.isLoading.collectAsState()
@@ -37,9 +36,3 @@ fun CreateGroupView(viewModel: CreateGroupViewModel) = Scaffold(
         }
     }
 }
-
-@Composable
-private fun Toolbar() = TopAppBar(
-    modifier = Modifier.fillMaxWidth(),
-    title = { Text("Create group", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
-)

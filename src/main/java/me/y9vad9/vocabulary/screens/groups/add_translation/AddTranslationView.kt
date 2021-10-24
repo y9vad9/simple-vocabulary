@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -13,13 +16,13 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import me.y9vad9.vocabulary.resources.fonts.Manrope
+import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @OptIn(ExperimentalUnitApi::class)
 @Composable
 fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = { Toolbar() }
+    topBar = { VocabularyToolbar(title = "New word", onBackPressed = { viewModel.onBackPressed() }) }
 ) {
     val words = viewModel.words.collectAsState()
     val variants = viewModel.variants.collectAsState()
@@ -60,9 +63,3 @@ fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
         }
     }
 }
-
-@Composable
-private fun Toolbar() = TopAppBar(
-    modifier = Modifier.fillMaxWidth(),
-    title = { Text("Add word", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
-)

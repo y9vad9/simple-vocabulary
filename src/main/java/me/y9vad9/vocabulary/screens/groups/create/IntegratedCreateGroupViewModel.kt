@@ -18,6 +18,10 @@ class IntegratedCreateGroupViewModel(private val storage: WordsStorage, private 
         this.name.value = name
     }
 
+    override fun onBackPressed() {
+        navigator.goBack()
+    }
+
     override fun onCreateButtonClicked() {
         viewModelScope.launch {
             isLoading.value = true

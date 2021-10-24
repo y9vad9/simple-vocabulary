@@ -10,5 +10,7 @@ abstract class AddTranslationViewModel : ViewModel() {
     abstract fun processWords(input: String)
     abstract fun processVariants(input: String)
 
+    abstract fun onBackPressed()
+
     abstract fun save()
 }

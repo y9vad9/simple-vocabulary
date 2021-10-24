@@ -18,7 +18,6 @@ class AndroidxScreenNavigator(private val navController: NavController) : Screen
     }
 
     override fun goBack() {
-        val route = navController.currentDestination!!
         navController.navigateUp()
     }
 }

@@ -10,6 +10,8 @@ abstract class ViewTranslationViewModel : ViewModel() {
 
     abstract fun loadWords()
 
+    abstract fun onBackPressed()
+
     abstract fun onTranslatedClicked(id: Long)
     abstract fun onAddButtonClicked()
 }

@@ -9,5 +9,7 @@ abstract class CreateGroupViewModel : ViewModel() {
 
     abstract fun processName(name: String)
 
+    abstract fun onBackPressed()
+
     abstract fun onCreateButtonClicked()
 }

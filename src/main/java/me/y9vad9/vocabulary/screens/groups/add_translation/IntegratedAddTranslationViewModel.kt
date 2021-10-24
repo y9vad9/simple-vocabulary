@@ -26,6 +26,10 @@ class IntegratedAddTranslationViewModel(
         variants.value = input
     }
 
+    override fun onBackPressed() {
+        navigator.goBack()
+    }
+
     override fun save() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {

@@ -25,6 +25,10 @@ class IntegratedViewTranslationViewModel(private val groupName: String, private 
         }
     }
 
+    override fun onBackPressed() {
+        navigator.goBack()
+    }
+
     override fun onTranslatedClicked(id: Long) {
 
     }

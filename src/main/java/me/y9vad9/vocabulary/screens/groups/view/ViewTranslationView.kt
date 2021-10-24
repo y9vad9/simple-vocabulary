@@ -16,18 +16,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import me.y9vad9.vocabulary.entities.Translated
-import me.y9vad9.vocabulary.resources.fonts.Manrope
+import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 private const val KEY = "TranslationGroupView"
 
 @Composable
 fun ViewTranslationView(viewModel: ViewTranslationViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = { Toolbar() },
+    topBar = { VocabularyToolbar("Words", onBackPressed = { viewModel.onBackPressed() }) },
     floatingActionButton = { FAB(onClick = { viewModel.onAddButtonClicked() }) }
 ) {
     val isLoading = viewModel.isLoading.collectAsState()
@@ -101,12 +100,6 @@ private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) 
         )
     }
 }
-
-@Composable
-private fun Toolbar() = TopAppBar(
-    modifier = Modifier.fillMaxWidth(),
-    title = { Text("Words", fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) }
-)
 
 @Composable
 private fun FAB(onClick: () -> Unit) = FloatingActionButton(
