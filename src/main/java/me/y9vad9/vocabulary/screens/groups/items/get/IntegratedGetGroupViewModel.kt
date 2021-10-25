@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.item.get
+package me.y9vad9.vocabulary.screens.groups.items.get
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.screens.ScreenNavigator
-import me.y9vad9.vocabulary.screens.groups.view.GetGroupViewModel
 import me.y9vad9.vocabulary.storage.WordsStorage
 
 class IntegratedGetGroupViewModel(

@@ -1,5 +1,6 @@
-package me.y9vad9.vocabulary.screens.groups.item.add
+package me.y9vad9.vocabulary.screens.groups.items.edit
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,6 +9,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DeleteOutline
+import androidx.compose.material.icons.outlined.Save
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -16,7 +20,7 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import me.y9vad9.vocabulary.screens.groups.add_translation.AddTranslationViewModel
+import me.y9vad9.vocabulary.screens.groups.items.add.AddTranslationViewModel
 import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @OptIn(ExperimentalUnitApi::class)
@@ -60,7 +64,16 @@ fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
             modifier = Modifier.fillMaxWidth(),
             onClick = { viewModel.save() },
         ) {
+            Image(imageVector = Icons.Outlined.Save, null)
             Text("Save")
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { viewModel.save() },
+        ) {
+            Image(imageVector = Icons.Outlined.DeleteOutline, null)
+            Text("Delete")
         }
     }
 }

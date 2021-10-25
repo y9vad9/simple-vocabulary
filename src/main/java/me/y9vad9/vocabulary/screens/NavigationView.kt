@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import me.y9vad9.vocabulary.screens.groups.create.CreateGroupScreen
 import me.y9vad9.vocabulary.screens.groups.get.AllGroupsScreen
-import me.y9vad9.vocabulary.screens.groups.item.add.AddTranslationScreen
-import me.y9vad9.vocabulary.screens.groups.item.get.GetGroupItemsScreen
+import me.y9vad9.vocabulary.screens.groups.items.add.AddTranslationScreen
+import me.y9vad9.vocabulary.screens.groups.items.get.GetGroupItemsScreen
 
 @Composable
 fun NavigationView(navController: NavHostController, activity: ComponentActivity) {

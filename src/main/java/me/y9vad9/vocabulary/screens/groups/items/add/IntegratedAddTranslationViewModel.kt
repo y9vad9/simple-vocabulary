@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.item.add
+package me.y9vad9.vocabulary.screens.groups.items.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.screens.ScreenNavigator
-import me.y9vad9.vocabulary.screens.groups.add_translation.AddTranslationViewModel
 import me.y9vad9.vocabulary.storage.WordsStorage
 
 class IntegratedAddTranslationViewModel(
