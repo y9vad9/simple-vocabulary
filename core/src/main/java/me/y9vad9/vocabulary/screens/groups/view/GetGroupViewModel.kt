@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.StateFlow
 import me.y9vad9.vocabulary.entities.Translated
 
-abstract class ViewTranslationViewModel : ViewModel() {
+abstract class GetGroupViewModel : ViewModel() {
     abstract val words: StateFlow<List<Translated>>
     abstract val isLoading: StateFlow<Boolean>
 

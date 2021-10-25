@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.add_translation
+package me.y9vad9.vocabulary.screens.groups.item.add
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import me.y9vad9.vocabulary.screens.groups.add_translation.AddTranslationViewModel
 import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @OptIn(ExperimentalUnitApi::class)

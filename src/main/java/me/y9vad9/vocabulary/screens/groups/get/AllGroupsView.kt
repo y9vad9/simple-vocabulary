@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.all
+package me.y9vad9.vocabulary.screens.groups.get
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

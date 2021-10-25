@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.all
+package me.y9vad9.vocabulary.screens.groups.get
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.StateFlow

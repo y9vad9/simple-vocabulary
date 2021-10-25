@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.view
+package me.y9vad9.vocabulary.screens.groups.item.get
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,9 +9,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.screens.ScreenNavigator
+import me.y9vad9.vocabulary.screens.groups.view.GetGroupViewModel
 import me.y9vad9.vocabulary.storage.WordsStorage
 
-class IntegratedViewTranslationViewModel(private val groupName: String, private val storage: WordsStorage, private val navigator: ScreenNavigator) : ViewTranslationViewModel() {
+class IntegratedGetGroupViewModel(
+    private val groupName: String,
+    private val storage: WordsStorage,
+    private val navigator: ScreenNavigator
+) : GetGroupViewModel() {
     override val words: MutableStateFlow<List<Translated>> = MutableStateFlow(emptyList())
     override val isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
@@ -41,6 +46,6 @@ class IntegratedViewTranslationViewModel(private val groupName: String, private 
         private val groupName: String, private val storage: WordsStorage, private val navigator: ScreenNavigator
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            IntegratedViewTranslationViewModel(groupName, storage, navigator) as T
+            IntegratedGetGroupViewModel(groupName, storage, navigator) as T
     }
 }

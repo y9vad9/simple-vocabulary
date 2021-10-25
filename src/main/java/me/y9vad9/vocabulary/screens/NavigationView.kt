@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import me.y9vad9.vocabulary.screens.groups.add_translation.AddTranslationScreen
-import me.y9vad9.vocabulary.screens.groups.all.AllGroupsScreen
 import me.y9vad9.vocabulary.screens.groups.create.CreateGroupScreen
-import me.y9vad9.vocabulary.screens.groups.view.ViewTranslationScreen
+import me.y9vad9.vocabulary.screens.groups.get.AllGroupsScreen
+import me.y9vad9.vocabulary.screens.groups.item.add.AddTranslationScreen
+import me.y9vad9.vocabulary.screens.groups.item.get.GetGroupItemsScreen
 
 @Composable
 fun NavigationView(navController: NavHostController, activity: ComponentActivity) {
@@ -27,7 +27,7 @@ fun NavigationView(navController: NavHostController, activity: ComponentActivity
             AddTranslationScreen(it.arguments?.getString("groupName")!!, activity, navigator).render()
         }
         composable("groups/{groupName}/view") {
-            ViewTranslationScreen(activity, it.arguments?.getString("groupName")!!, navigator).render()
+            GetGroupItemsScreen(activity, it.arguments?.getString("groupName")!!, navigator).render()
         }
     }
 }

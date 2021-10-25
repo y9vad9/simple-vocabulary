@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.view
+package me.y9vad9.vocabulary.screens.groups.item.get
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -19,12 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import me.y9vad9.vocabulary.entities.Translated
+import me.y9vad9.vocabulary.screens.groups.view.GetGroupViewModel
 import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 private const val KEY = "TranslationGroupView"
 
 @Composable
-fun ViewTranslationView(viewModel: ViewTranslationViewModel) = Scaffold(
+fun ViewTranslationView(viewModel: GetGroupViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
     topBar = { VocabularyToolbar("Words", onBackPressed = { viewModel.onBackPressed() }) },
     floatingActionButton = { FAB(onClick = { viewModel.onAddButtonClicked() }) }

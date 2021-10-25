@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.screens.groups.all
+package me.y9vad9.vocabulary.screens.groups.get
 
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
