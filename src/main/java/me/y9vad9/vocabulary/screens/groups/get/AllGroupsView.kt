@@ -78,7 +78,7 @@ private fun GroupItem(
             fontSize = TextUnit(18f, TextUnitType.Sp)
         )
         Text(
-            text = group.translated.map { it.word }.flatten().joinToString(", ").takeIf { it.isNotEmpty() }
+            text = group.translated.map { it.words }.flatten().joinToString(", ").takeIf { it.isNotEmpty() }
                 ?: "Nothing in the group",
             fontWeight = FontWeight.Light,
             fontSize = TextUnit(12f, TextUnitType.Sp),

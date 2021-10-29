@@ -12,27 +12,36 @@ import androidx.compose.ui.unit.dp
 import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @Composable
-fun CreateGroupView(viewModel: CreateGroupViewModel) = Scaffold(
-    modifier = Modifier.fillMaxSize(),
-    topBar = { VocabularyToolbar("New group", onBackPressed = { viewModel.onBackPressed() }) }
-) {
+fun CreateGroupView(viewModel: CreateGroupViewModel) {
     val name = viewModel.name.collectAsState()
     val isLoading = viewModel.isLoading.collectAsState()
-    Column(modifier = Modifier.padding(8.dp)) {
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-            value = name.value,
-            onValueChange = { value -> viewModel.processName(value) },
-            singleLine = true,
-            label = { Text("Group name") }
-        )
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.onCreateButtonClicked() },
-        ) {
-            if (isLoading.value)
-                CircularProgressIndicator()
-            else Text("Save")
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            VocabularyToolbar(
+                title = "New group",
+                onBackPressed = { viewModel.onBackPressed() },
+                content = {
+                    if (isLoading.value)
+                        CircularProgressIndicator()
+                }
+            )
+        }
+    ) {
+        Column(modifier = Modifier.padding(8.dp)) {
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                value = name.value,
+                onValueChange = { value -> viewModel.processName(value) },
+                singleLine = true,
+                label = { Text("Group name") }
+            )
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = { viewModel.onCreateButtonClicked() },
+            ) {
+                Text("Save")
+            }
         }
     }
 }

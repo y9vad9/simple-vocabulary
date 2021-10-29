@@ -18,12 +18,15 @@ class IntegratedGetGroupViewModel(
 ) : GetGroupViewModel() {
     override val words: MutableStateFlow<List<Translated>> = MutableStateFlow(emptyList())
     override val isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    override val isPlayButtonEnabled: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     override fun loadWords() {
         isLoading.value = true
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 words.value = storage.getGroup(groupName).translated
+                if (words.value.size > 3)
+                    isPlayButtonEnabled.value = true
             }
             isLoading.value = false
         }
@@ -34,11 +37,15 @@ class IntegratedGetGroupViewModel(
     }
 
     override fun onTranslatedClicked(id: Long) {
-
+        navigator.editGroupTranslation(groupName, id)
     }
 
     override fun onAddButtonClicked() {
         navigator.gotoAddingWord(groupName)
+    }
+
+    override fun onPlayButtonClicked() {
+        navigator.gotoQuiz(groupName)
     }
 
     class Factory(

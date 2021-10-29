@@ -5,15 +5,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
@@ -62,8 +60,8 @@ fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
             modifier = Modifier.fillMaxWidth(),
             onClick = { viewModel.save() },
         ) {
-            Image(imageVector = Icons.Outlined.Save, null)
-            Text("Save")
+            Image(imageVector = Icons.Outlined.Save, null, colorFilter = ColorFilter.tint(MaterialTheme.colors.onPrimary))
+            Text("Add")
         }
     }
 }

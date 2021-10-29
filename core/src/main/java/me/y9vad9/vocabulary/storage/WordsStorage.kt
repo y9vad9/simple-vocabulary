@@ -8,5 +8,6 @@ interface WordsStorage {
     suspend fun createGroup(name: String)
     suspend fun deleteGroup(name: String)
     suspend fun createTranslate(groupName: String, words: List<String>, variants: List<String>)
+    suspend fun editTranslate(groupName: String, id: Long, words: List<String>, variants: List<String>)
     suspend fun deleteTranslate(groupName: String, id: Long)
 }

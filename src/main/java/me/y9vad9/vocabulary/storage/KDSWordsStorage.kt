@@ -1,6 +1,7 @@
 package me.y9vad9.vocabulary.storage
 
 import `fun`.kotlingang.kds.KSharedDataStorage
+import `fun`.kotlingang.kds.annotation.ExperimentalKDSApi
 import `fun`.kotlingang.kds.delegate.storageList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,6 +10,7 @@ import me.y9vad9.vocabulary.entities.TranslatedGroup
 
 object KDSWordsStorage : WordsStorage {
     private object KDSStorage : KSharedDataStorage() {
+        @OptIn(ExperimentalKDSApi::class)
         val groups: MutableList<TranslatedGroup> by storageList { mutableListOf() }
     }
 
@@ -36,6 +38,16 @@ object KDSWordsStorage : WordsStorage {
                 add(Translated((group.translated.maxOfOrNull { it.id } ?: 0) + 1, words, variants))
             }
         )
+    }
+
+    override suspend fun editTranslate(groupName: String, id: Long, words: List<String>, variants: List<String>) {
+        val index = KDSStorage.groups.indexOfFirst { it.name == groupName }
+        val group = KDSStorage.groups[index]
+        val translateIndex = group.translated.indexOfFirst { it.id == id }
+        val list = group.translated.toMutableList().apply {
+            this[translateIndex] = this[translateIndex].copy(words = words, variants = variants)
+        }
+        KDSStorage.groups[index] = group.copy(groupName, list)
     }
 
     override suspend fun deleteTranslate(groupName: String, id: Long) {

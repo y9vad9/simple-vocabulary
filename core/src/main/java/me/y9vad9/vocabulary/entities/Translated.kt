@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Translated(
     val id: Long,
-    val word: List<String>,
+    val words: List<String>,
     val variants: List<String>
 )

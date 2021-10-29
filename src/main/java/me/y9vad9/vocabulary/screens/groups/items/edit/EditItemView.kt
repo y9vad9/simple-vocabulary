@@ -5,32 +5,33 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteOutline
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import me.y9vad9.vocabulary.screens.groups.items.add.AddTranslationViewModel
 import me.y9vad9.vocabulary.widgets.VocabularyToolbar
 
 @OptIn(ExperimentalUnitApi::class)
 @Composable
-fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
+fun EditItemView(viewModel: EditItemViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = { VocabularyToolbar(title = "New word", onBackPressed = { viewModel.onBackPressed() }) }
+    topBar = { VocabularyToolbar(title = "Edit word", onBackPressed = { viewModel.onBackPressed() }) }
 ) {
     val words = viewModel.words.collectAsState()
     val variants = viewModel.variants.collectAsState()
+    LaunchedEffect("EditItem") {
+        viewModel.load()
+    }
     Column(modifier = Modifier.padding(8.dp)) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
@@ -64,15 +65,15 @@ fun AddTranslationView(viewModel: AddTranslationViewModel) = Scaffold(
             modifier = Modifier.fillMaxWidth(),
             onClick = { viewModel.save() },
         ) {
-            Image(imageVector = Icons.Outlined.Save, null)
+            Image(imageVector = Icons.Outlined.Save, null, colorFilter = ColorFilter.tint(MaterialTheme.colors.onPrimary))
             Text("Save")
         }
 
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.save() },
+            onClick = { viewModel.delete() },
         ) {
-            Image(imageVector = Icons.Outlined.DeleteOutline, null)
+            Image(imageVector = Icons.Outlined.DeleteOutline, null, colorFilter = ColorFilter.tint(MaterialTheme.colors.onPrimary))
             Text("Delete")
         }
     }

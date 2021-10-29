@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -26,7 +27,17 @@ private const val KEY = "TranslationGroupView"
 @Composable
 fun ViewTranslationView(viewModel: GetGroupViewModel) = Scaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = { VocabularyToolbar("Words", onBackPressed = { viewModel.onBackPressed() }) },
+    topBar = {
+        VocabularyToolbar("Words", onBackPressed = { viewModel.onBackPressed() }) {
+            if (viewModel.isPlayButtonEnabled.value) {
+                IconButton(
+                    onClick = { viewModel.onPlayButtonClicked() },
+                ) {
+                    Icon(imageVector = Icons.Rounded.PlayArrow, "Start quiz", tint = Color.White)
+                }
+            }
+        }
+    },
     floatingActionButton = { FAB(onClick = { viewModel.onAddButtonClicked() }) }
 ) {
     val isLoading = viewModel.isLoading.collectAsState()
@@ -79,11 +90,12 @@ private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) 
     Card(
         modifier = Modifier.weight(1f),
         border = BorderStroke(1.dp, MaterialTheme.colors.onBackground),
-        shape = RoundedCornerShape(topStart = 0.dp)
+        shape = RoundedCornerShape(topStart = 0.dp),
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Text(
             modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),
-            text = translated.word.joinToString(","),
+            text = translated.words.joinToString(","),
             textAlign = TextAlign.Center
         )
     }
@@ -91,7 +103,8 @@ private fun TranslatedItem(translated: Translated, onItemSelected: (Translated) 
     Card(
         modifier = Modifier.weight(1f),
         border = BorderStroke(1.dp, MaterialTheme.colors.onBackground),
-        shape = RoundedCornerShape(topStart = 0.dp)
+        shape = RoundedCornerShape(topStart = 0.dp),
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Text(
             modifier = Modifier.weight(1f).padding(16.dp).fillMaxWidth(),

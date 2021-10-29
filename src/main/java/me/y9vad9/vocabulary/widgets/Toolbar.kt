@@ -1,6 +1,7 @@
 package me.y9vad9.vocabulary.widgets
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -16,7 +17,16 @@ import androidx.compose.ui.text.font.FontWeight
 import me.y9vad9.vocabulary.resources.fonts.Manrope
 
 @Composable
-fun VocabularyToolbar(title: String, backButton: ImageVector = Icons.Rounded.ArrowBack, onBackPressed: () -> Unit) = TopAppBar(
+fun VocabularyToolbar(title: String, backButton: ImageVector = Icons.Rounded.ArrowBack, onBackPressed: () -> Unit) =
+    VocabularyToolbar(title, backButton, onBackPressed) {}
+
+@Composable
+fun VocabularyToolbar(
+    title: String,
+    backButton: ImageVector = Icons.Rounded.ArrowBack,
+    onBackPressed: () -> Unit,
+    content: @Composable RowScope.() -> Unit
+) = TopAppBar(
     modifier = Modifier.fillMaxWidth(),
     title = { Text(title, fontFamily = Manrope, fontWeight = FontWeight.ExtraBold) },
     navigationIcon = {
@@ -25,5 +35,6 @@ fun VocabularyToolbar(title: String, backButton: ImageVector = Icons.Rounded.Arr
                 imageVector = backButton, contentDescription = "Go back", colorFilter = ColorFilter.tint(Color.White)
             )
         }
-    }
+    },
+    actions = content
 )

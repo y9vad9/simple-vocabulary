@@ -17,7 +17,15 @@ class AndroidxScreenNavigator(private val navController: NavController) : Screen
         navController.navigate("groups/$groupName/add")
     }
 
+    override fun editGroupTranslation(groupName: String, id: Long) {
+        navController.navigate("groups/$groupName/$id")
+    }
+
     override fun goBack() {
         navController.navigateUp()
+    }
+
+    override fun gotoQuiz(groupName: String) {
+        navController.navigate("quiz/$groupName")
     }
 }
