@@ -26,6 +26,6 @@ class AndroidxScreenNavigator(private val navController: NavController) : Screen
     }
 
     override fun gotoQuiz(groupNames: List<String>) {
-        navController.navigate("quiz/$groupNames")
+        navController.navigate("quiz/${groupNames.joinToString(",")}")
     }
 }

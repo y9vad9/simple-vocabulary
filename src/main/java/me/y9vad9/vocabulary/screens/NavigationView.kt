@@ -45,9 +45,9 @@ fun NavigationView(navController: NavHostController, activity: ComponentActivity
         }
         composable(
             route = "quiz/{groupNames}",
-            arguments = listOf(navArgument("groupNames") { type = NavType.StringArrayType })
+            arguments = listOf(navArgument("groupNames") { type = NavType.StringType })
         ) {
-            QuizScreen(it.arguments!!.getStringArrayList("groupNames")!!, activity, navigator).render()
+            QuizScreen(it.arguments!!.getString("groupNames")!!.split(","), activity, navigator).render()
         }
     }
 }
