@@ -56,6 +56,8 @@ class IntegratedAllGroupsViewModel private constructor(
 
     override fun onPlayButtonPressed() {
         navigator.gotoQuiz(groups.value.filter { it.isSelected }.map { it.data.name })
+        isAnyItemSelected.value = false
+        groups.value = groups.value.map { if (it.isSelected) it.opposite() else it }
     }
 
     override fun onCreateGroupPressed() {
