@@ -2,9 +2,9 @@
 
 Simple vocabulary app made with Jetpack Compose.
 
-## Demo
+## Preview
 
-![preview](assets/demo.gif)
+![preview](assets/preview.gif)
 
 ## Installation
 
