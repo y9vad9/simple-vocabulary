@@ -45,7 +45,7 @@ class IntegratedGetGroupViewModel(
     }
 
     override fun onPlayButtonClicked() {
-        navigator.gotoQuiz(groupName)
+        navigator.gotoQuiz(listOf(groupName))
     }
 
     class Factory(

@@ -14,7 +14,7 @@ import me.y9vad9.vocabulary.screens.ScreenNavigator
 import me.y9vad9.vocabulary.storage.WordsStorage
 
 class IntegratedQuizViewModel(
-    private val groupName: String,
+    private val groupNames: List<String>,
     private val storage: WordsStorage,
     private val navigator: ScreenNavigator
 ) : QuizViewModel() {
@@ -39,7 +39,8 @@ class IntegratedQuizViewModel(
     private suspend fun getWords(): List<Translated> {
         if (groupWords == null) {
             withContext(Dispatchers.IO) {
-                groupWords = storage.getGroup(groupName).translated
+                groupWords = storage.getGroups().filter { it.name in groupNames }
+                    .flatMap { it.translated }
             }
         }
         return groupWords!!
@@ -76,7 +77,9 @@ class IntegratedQuizViewModel(
     }
 
     private fun randomVariants(count: Int, right: List<String>): List<String> {
-        return words.shuffled().filter { translated -> !translated.words.any { it in right } }.take(count).map { it.variants.random() }
+        return words.shuffled().filter { translated ->
+            !translated.words.any { it in right }
+        }.take(count).map { it.variants.random() }
     }
 
     override fun onBackPressed() {
@@ -84,11 +87,11 @@ class IntegratedQuizViewModel(
     }
 
     class Factory(
-        private val groupName: String,
+        private val groupNames: List<String>,
         private val wordsStorage: WordsStorage,
         private val navigator: ScreenNavigator
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            IntegratedQuizViewModel(groupName, wordsStorage, navigator) as T
+            IntegratedQuizViewModel(groupNames, wordsStorage, navigator) as T
     }
 }

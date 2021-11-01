@@ -7,10 +7,10 @@ import me.y9vad9.vocabulary.screens.Screen
 import me.y9vad9.vocabulary.screens.ScreenNavigator
 import me.y9vad9.vocabulary.storage.KDSWordsStorage
 
-class QuizScreen(groupName: String, activity: ComponentActivity, navigator: ScreenNavigator) : Screen<QuizViewModel> {
+class QuizScreen(groupNames: List<String>, activity: ComponentActivity, navigator: ScreenNavigator) : Screen<QuizViewModel> {
     override val viewModel: QuizViewModel by activity.viewModels {
         IntegratedQuizViewModel.Factory(
-            groupName,
+            groupNames,
             KDSWordsStorage,
             navigator
         )

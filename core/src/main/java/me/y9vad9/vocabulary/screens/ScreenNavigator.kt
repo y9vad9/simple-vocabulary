@@ -6,5 +6,5 @@ interface ScreenNavigator {
     fun gotoAddingWord(groupName: String)
     fun editGroupTranslation(groupName: String, id: Long)
     fun goBack()
-    fun gotoQuiz(groupName: String)
+    fun gotoQuiz(groupNames: List<String>)
 }

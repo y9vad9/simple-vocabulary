@@ -43,8 +43,11 @@ fun NavigationView(navController: NavHostController, activity: ComponentActivity
                 it.arguments?.getLong("id")!!, activity, navigator
             ).render()
         }
-        composable("quiz/{groupName}") {
-            QuizScreen(it.arguments!!.getString("groupName")!!, activity, navigator).render()
+        composable(
+            route = "quiz/{groupNames}",
+            arguments = listOf(navArgument("groupNames") { type = NavType.StringArrayType })
+        ) {
+            QuizScreen(it.arguments!!.getStringArrayList("groupNames")!!, activity, navigator).render()
         }
     }
 }
