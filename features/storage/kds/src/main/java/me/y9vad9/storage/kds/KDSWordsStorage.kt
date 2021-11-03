@@ -1,4 +1,4 @@
-package me.y9vad9.vocabulary.storage
+package me.y9vad9.storage.kds
 
 import `fun`.kotlingang.kds.KSharedDataStorage
 import `fun`.kotlingang.kds.annotation.ExperimentalKDSApi
@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.TranslatedGroup
+import me.y9vad9.vocabulary.storage.WordsStorage
 
 object KDSWordsStorage : WordsStorage {
     private object KDSStorage : KSharedDataStorage() {

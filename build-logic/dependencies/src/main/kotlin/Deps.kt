@@ -30,9 +30,18 @@ object Deps {
 
     private const val kvisionVersion = "5.1.1"
     private const val shadowVer = "7.0.0"
+    private const val roomVersion = "2.3.0"
 
     object Modules {
         const val Core: String = ":core"
+
+        object Features {
+            object Storage {
+                const val Core = ":features:storage:core"
+                const val KDS = ":features:storage:kds"
+                const val Room = ":features:storage:room"
+            }
+        }
     }
 
     object Libs {
@@ -109,6 +118,13 @@ object Deps {
             const val Simple = "org.slf4j:slf4j-simple:$slf4jJVersion"
         }
         object Androidx {
+
+            object Room {
+                const val Compiler = "androidx.room:room-compiler:$roomVersion"
+                const val Runtime = "androidx.room:room-runtime:$roomVersion"
+                const val Ktx = "androidx.room:room-ktx:$roomVersion"
+            }
+
             const val AppCompat =
                 "androidx.appcompat:appcompat:$androidAppCompatVersion"
             const val Material =

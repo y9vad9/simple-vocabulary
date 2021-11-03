@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import me.y9vad9.vocabulary.screens.Screen
 import me.y9vad9.vocabulary.screens.ScreenNavigator
-import me.y9vad9.vocabulary.storage.KDSWordsStorage
 
 class EditItemScreen(
     private val groupName: String,
@@ -13,7 +12,7 @@ class EditItemScreen(
 ) : Screen<EditItemViewModel> {
     override val viewModel: EditItemViewModel
         @Composable get() = viewModel(
-            factory = IntegratedEditItemViewModel.Factory(groupName, id, KDSWordsStorage, navigator)
+            factory = IntegratedEditItemViewModel.Factory(groupName, id, me.y9vad9.storage.kds.KDSWordsStorage, navigator)
         )
 
     @Composable

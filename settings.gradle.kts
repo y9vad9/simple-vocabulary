@@ -30,3 +30,6 @@ includeBuild("build-logic/dependencies")
 includeBuild("build-logic/configuration")
 
 include(":core")
+include(":features:storage:core")
+include(":features:storage:kds")
+include(":features:storage:room")

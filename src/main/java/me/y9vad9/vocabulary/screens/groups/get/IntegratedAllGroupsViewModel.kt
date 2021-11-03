@@ -75,7 +75,7 @@ class IntegratedAllGroupsViewModel private constructor(
     }
 
     class Factory(
-        private val wordsStorage: WordsStorage,
+        private val wordsStorage: me.y9vad9.vocabulary.storage.WordsStorage,
         private val navigator: ScreenNavigator
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =

@@ -11,11 +11,10 @@ import kotlinx.coroutines.withContext
 import me.y9vad9.vocabulary.entities.Translated
 import me.y9vad9.vocabulary.entities.VariantType
 import me.y9vad9.vocabulary.screens.ScreenNavigator
-import me.y9vad9.vocabulary.storage.WordsStorage
 
 class IntegratedQuizViewModel(
     private val groupNames: List<String>,
-    private val storage: WordsStorage,
+    private val storage: me.y9vad9.vocabulary.storage.WordsStorage,
     private val navigator: ScreenNavigator
 ) : QuizViewModel() {
     override val word: MutableStateFlow<String> = MutableStateFlow("")
@@ -88,7 +87,7 @@ class IntegratedQuizViewModel(
 
     class Factory(
         private val groupNames: List<String>,
-        private val wordsStorage: WordsStorage,
+        private val wordsStorage: me.y9vad9.vocabulary.storage.WordsStorage,
         private val navigator: ScreenNavigator
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =

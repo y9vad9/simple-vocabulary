@@ -6,6 +6,8 @@ group = AppInfo.PACKAGE
 version = AppInfo.VERSION
 
 dependencies {
+    implementation(project(Deps.Modules.Features.Storage.Core))
+    implementation(project(Deps.Modules.Features.Storage.KDS))
     implementation(Deps.Libs.KotlinGang.KotlinDataStorage.SharedPreferences)
     implementation(Deps.Libs.Androidx.Compose.UI)
     implementation(Deps.Libs.Androidx.AppCompat)
