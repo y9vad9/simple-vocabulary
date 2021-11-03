@@ -1,6 +1,5 @@
 package me.y9vad9.vocabulary.screens
 
-import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,22 +14,22 @@ import me.y9vad9.vocabulary.screens.groups.items.get.GetGroupItemsScreen
 import me.y9vad9.vocabulary.screens.quiz.QuizScreen
 
 @Composable
-fun NavigationView(navController: NavHostController, activity: ComponentActivity) {
+fun NavigationView(navController: NavHostController) {
     val navigator: ScreenNavigator = AndroidxScreenNavigator(navController)
     NavHost(navController = navController, startDestination = "groups/all") {
         composable("groups/all") {
-            AllGroupsScreen(activity, navigator).render()
+            AllGroupsScreen(navigator).render()
         }
         composable("groups/create") {
-            CreateGroupScreen(activity, navigator).render()
+            CreateGroupScreen(navigator).render()
         }
         composable(
             "groups/{groupName}/add"
         ) {
-            AddTranslationScreen(it.arguments?.getString("groupName")!!, activity, navigator).render()
+            AddTranslationScreen(it.arguments?.getString("groupName")!!, navigator).render()
         }
         composable("groups/{groupName}/view") {
-            GetGroupItemsScreen(activity, it.arguments?.getString("groupName")!!, navigator).render()
+            GetGroupItemsScreen(it.arguments?.getString("groupName")!!, navigator).render()
         }
         composable(
             route = "groups/{groupName}/{id}",
@@ -40,14 +39,14 @@ fun NavigationView(navController: NavHostController, activity: ComponentActivity
         ) {
             EditItemScreen(
                 it.arguments?.getString("groupName")!!,
-                it.arguments?.getLong("id")!!, activity, navigator
+                it.arguments?.getLong("id")!!, navigator
             ).render()
         }
         composable(
             route = "quiz/{groupNames}",
             arguments = listOf(navArgument("groupNames") { type = NavType.StringType })
         ) {
-            QuizScreen(it.arguments!!.getString("groupNames")!!.split(","), activity, navigator).render()
+            QuizScreen(it.arguments!!.getString("groupNames")!!.split(","), navigator).render()
         }
     }
 }

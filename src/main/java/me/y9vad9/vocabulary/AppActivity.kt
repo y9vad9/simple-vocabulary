@@ -18,7 +18,7 @@ class AppActivity : ComponentActivity() {
         setContent {
             SimpleVocabularyTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    NavigationView(rememberNavController(), this)
+                    NavigationView(rememberNavController())
                 }
             }
         }

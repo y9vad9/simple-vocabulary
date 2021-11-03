@@ -29,7 +29,6 @@ class IntegratedCreateGroupViewModel(private val storage: WordsStorage, private 
                 storage.createGroup(name.value)
             }
             isLoading.value = false
-            name.value = ""
             navigator.goBack()
         }
     }

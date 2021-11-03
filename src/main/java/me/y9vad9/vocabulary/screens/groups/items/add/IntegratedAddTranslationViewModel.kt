@@ -39,8 +39,6 @@ class IntegratedAddTranslationViewModel(
                     variants = variants.value.split(",")
                 )
             }
-            words.value = ""
-            variants.value = ""
             navigator.goBack()
         }
     }

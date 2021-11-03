@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 
 interface Screen<VM : ViewModel> {
     val viewModel: VM
+        @Composable get
 
     @Composable
     fun render()
