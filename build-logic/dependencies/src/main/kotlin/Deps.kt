@@ -22,7 +22,7 @@ object Deps {
     private const val recyclerViewVersion = "1.3.0-alpha01"
     private const val swipeRefreshLayoutVersion = "1.2.0"
     private const val constraintLayoutVersion = "2.1.0"
-    private const val lifecycleVersion = "2.4.0-rc01"
+    private const val lifecycleVersion = "2.4.0"
     private const val glideVersion = "4.12.0"
     private const val androidAppCompatVersion = "1.3.1"
     private const val androidComposeVersion = "1.1.0-alpha06"
